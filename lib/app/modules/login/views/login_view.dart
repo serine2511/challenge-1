@@ -10,40 +10,64 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/background.png', // Corrected path
+              'assets/images/background.png',
               fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            )
+            ),
           ),
-          // Foreground (Login Form)
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
-                  controller: controller.phoneController,
-                  decoration: InputDecoration(labelText: 'رقم الهاتف'),
-                ),
-                TextField(
-                  controller: controller.passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'كلمة المرور'),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: controller.login,
-                  child: Text('تسجيل الدخول'),
-                ),
-                TextButton(
-                  onPressed: () => Get.toNamed('/sign_in'),
-                  child: Text('ليس لدي حساب انشاء حساب'),
-                ),
-              ],
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: controller.phoneController,
+                    textAlign: TextAlign.right,
+                    decoration: InputDecoration(
+                      labelText: 'رقم الهاتف',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  TextField(
+                    controller: controller.passwordController,
+                    obscureText: true,
+                    textAlign: TextAlign.right,
+                    decoration: InputDecoration(
+                      labelText: 'كلمة المرور',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: controller.login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 80, vertical: 16),
+                    ),
+                    child: Text('تسجيل الدخول', style: TextStyle(fontSize: 18)),
+                  ),
+                  SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => Get.toNamed('/sign_in'),
+                    child: Text(
+                      'ليس لدي حساب انشاء حساب',
+                      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
